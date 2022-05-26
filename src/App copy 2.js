@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css'
 import data from "./questions.json"  
 import star1 from "./star1.png"  
@@ -17,7 +17,6 @@ function App () {
     const [answeredFailed, setAnsweredFailed] = React.useState(0);
     const [score, setScore] = React.useState(0);
     const [maxScore, setMaxScore] = React.useState(0);
-    const [answersArr, setAnswersArr] = React.useState([]);
     
 
     const nextQuestion =()=>{
@@ -87,7 +86,30 @@ function App () {
                 break;
         }
 
-        
+        const answersArr = []
+        data[dataId].incorrect_answers.map(
+            (answers, pk, answersObj)=>{
+                answersArr.push(
+                    <button className='answers' onClick={validateAns}>{answers.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>
+                )
+            }
+        )
+
+        answersArr.push(
+            <button className='answers' onClick={validateAns}>{data[dataId].correct_answer.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>
+        )
+
+        const shuffleArray = array => {
+            for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              const temp = array[i];
+              array[i] = array[j];
+              array[j] = temp;
+            }
+        }
+
+        shuffleArray(answersArr)
+        setAnswers(answersArr)
 
         setScore(
             (answeredCorrect*100)/numOfQuestions
@@ -99,35 +121,6 @@ function App () {
     }, [ progress, nextBTN]);
     
     
-
-
-    useEffect(() => {
-        const answersSubArr = [<button className='answers' onClick={validateAns} >{data[dataId].correct_answer.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>]
-        data[dataId].incorrect_answers.map(  
-           (answers, pk, answersObj)=>{
-               answersSubArr.push(<button className='answers' onClick={validateAns} >{answers.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>)
-           }
-       )
-       setAnswersArr(answersSubArr)
-    }, [answersArr]);
-
-    useMemo(
-        ()=>{
-            console.log(answersArr)
-            const shuffleArray = array => {
-                for (let i = array.length - 1; i > 0; i--) {
-                  const j = Math.floor(Math.random() * (i + 1));
-                  const temp = array[i];
-                  array[i] = array[j];
-                  array[j] = temp;
-                }
-              }
-    
-            shuffleArray(answersArr)
-            setAnswers(answersArr)
-        }, [progress]
-    )
-
 
     return (
         <div className='App'>
