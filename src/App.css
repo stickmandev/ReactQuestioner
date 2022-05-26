@@ -92,6 +92,7 @@ img{
   height: 3vh;
   border: 2px solid black;
   border-radius: 7px;
+  position: relative;
 }
 
 #bigOverlay #scoreChat span:first-child{
@@ -112,6 +113,7 @@ img{
 }
 
 #score{
+  position: absolute;
   height: 100%;
   background-color: rgb(114, 112, 112);
 }
