@@ -5,8 +5,6 @@ import star1 from "./star1.png"
 import star2 from "./star2.png"  
 
 function App () {
-    // const [numOfQuestions, set] = React.useState([]);
-    // const [numOfQuestions, set] = React.useState(0);
     const [numOfQuestions, setNumOfQuestions] = React.useState(0);
     const [currentNum, setCurrentNum] = React.useState(1);
     const [progress, setProgress] = React.useState(0);
@@ -20,7 +18,6 @@ function App () {
     const [answeredFailed, setAnsweredFailed] = React.useState(0);
     const [score, setScore] = React.useState(0);
     const [maxScore, setMaxScore] = React.useState(0);
-    // const [numOfQuestions, set] = React.useState(0);
     
 
     const nextQuestion =()=>{
@@ -28,8 +25,12 @@ function App () {
             setCurrentNum(currentNum+1)
             setDataId(dataId+1)
         }
-        setDisabledBTN(false)
+        const answerClass = document.getElementsByClassName("answers")
+        for(let i=0; i<answerClass.length; i++){
+            answerClass[i].disabled = false
+        }
         setnextBTN(true)
+        setAnswerStatus("")
     }
 
     const validateAns =(e)=>{
@@ -45,7 +46,6 @@ function App () {
             answerClass[i].disabled = true
         }
         setnextBTN(false)
-        
     }
 
     useEffect(() => {
@@ -119,7 +119,6 @@ function App () {
         setMaxScore(
             100-((answeredFailed*100)/numOfQuestions)
         )
-        // console.log(answers);
     }, [currentNum, progress, disabledBTN]);
     
     
