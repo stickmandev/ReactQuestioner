@@ -2,6 +2,8 @@
   flex-direction: column;
   display: flex;
   overflow: hidden;
+  width: 50%;
+  margin: 0 auto;
 }
 
 #bigOverlay{
@@ -44,17 +46,21 @@ img{
   text-align: center;
   margin-top: 6vh;
   flex-wrap: wrap;
-  width: 180%;
-  margin-left: -67%;
+  /* width: 180%;
+  margin-left: -67%; */
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  height: 15vh;
 }
 
 #bigOverlay #answers .answers{
   text-align: center;
-  min-width: 18vw;
+  min-width: 14vw;
   height: 3vh;
   border-radius: 6px;
-  margin-left: 30%;
-  margin-bottom: 7vh;
+  /* margin-left: 30%; */
+  /* margin-bottom: 7vh; */
 }
 
 #bigOverlay #answers .answers:hover{
@@ -71,8 +77,10 @@ img{
   border-radius: 6px;
   width: 18vw;
   height: 3vh;
-  margin-left: 40%;
+  /* margin: 0 auto; */
+  margin-left: 30%;
   border: 1px solid black;
+  margin-top: 7vh;
 }
 
 #bigOverlay #nextQuestion:hover{
