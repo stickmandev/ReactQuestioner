@@ -42,6 +42,7 @@ function App () {
         }
         setDisabledBTN(true)
         setnextBTN(false)
+        
     }
 
     useEffect(() => {
@@ -143,7 +144,7 @@ function App () {
 
                 <h2 id='answerStatus'>{answerStatus}</h2>
 
-                <button id='nextQuestion' onClick={nextQuestion} disabled={nextBTN}>next</button>
+                <button id='nextQuestion' onClick={nextQuestion} disabled={nextBTN}>Next Question</button>
 
                 <div id='scoreChat'>
                     <span>{score}%</span> <span>{maxScore}%</span>
