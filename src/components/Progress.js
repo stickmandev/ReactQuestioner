@@ -6,16 +6,12 @@ function Progress() {
     const currentNum = useSelector((state) => state.currentNum.value)
     const [progress, setProgress] = React.useState(0);
 
-    // console.log(numOfQuestions)
-    // console.log(currentNum)
     useEffect(() => {
-        console.log(numOfQuestions)
-    console.log(currentNum)
         setProgress((currentNum*100)/numOfQuestions)
     })
     
     return (
-        <div id='progressBar' style={{width:`${progress}%`}}></div>
+        <progress  id='progressBar' className="progress-bar" style={{width:`${progress}%`}}></progress>
     )
 }
 

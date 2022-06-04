@@ -7,6 +7,7 @@ function Score() {
     const answeredFailed = useSelector((state) => state.answeredFailed.value)
     const [score, setScore] = React.useState(0);
     const [maxScore, setMaxScore] = React.useState(0);
+    const [minScore, setMinScore] = React.useState(0);
 
     useEffect(
         () => {
@@ -17,18 +18,23 @@ function Score() {
             setMaxScore(
                 100-((answeredFailed*100)/numOfQuestions)
             )
+
+            setMinScore(
+                100-maxScore
+            )
         }
     )
 
     return (
         <div id='scoreChat'>
-            <span>{score}%</span> <span>{maxScore}%</span>
-            <div id='scoreOverlay'>
-                <div id='maxScore' style={{width:`${maxScore}%`}}>
-                    <div id='score' style={{width:`${score}%`}}>
-                        
-                    </div>
-                </div>
+            <div id='scoreDsp'>
+                <span>{score}%</span> 
+                <span>{maxScore}%</span>
+            </div>
+            <div id='scoreOverlay' className="progress-bar" >
+                <div id='score' className="progress-bar" style={{width:`${score}%`}}></div>
+                <div id='minScore' className="progress-bar" style={{width:`${minScore}%`}}></div>
+                <div id='maxScore' className="progress-bar" style={{width:`${maxScore}%`}}></div>
             </div>
         </div>
     )

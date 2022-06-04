@@ -15,7 +15,8 @@ function Answer() {
     const [answerStatus, setAnswerStatus] = React.useState([]);
     const [answersArr, setAnswersArr] = React.useState([]);
     const [nextBTN, setnextBTN] = React.useState(true);
-    const [nextBTN_Disp, setNextBTN_Disp] = React.useState("none");
+    const [nextBTN_Disp, setNextBTN_Disp] = React.useState("hidden");
+    const [correctAnsBorder, setCorrectAnsBorder] = React.useState("1px solid black");
 
     const dispatch = useDispatch()
     
@@ -23,7 +24,7 @@ function Answer() {
         if(currentNum<numOfQuestions){
             dispatch(increase_CurrentNum())
             dispatch(increase_Data_Id())
-            setNextBTN_Disp("none")
+            setNextBTN_Disp("hidden")
         }
         const answerClass = document.getElementsByClassName("answers")
         for(let i=0; i<answerClass.length; i++){
@@ -31,17 +32,20 @@ function Answer() {
         }
         setnextBTN(true)
         setAnswerStatus("")
+        setCorrectAnsBorder("1px solid black")
+
     }
 
     const validateAns =(e)=>{
-        if(e.target.innerText===data[data_Id].correct_answer.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C/g,"")){
+        if(e.target.innerText===decodeURIComponent(data[data_Id].correct_answer)){
             setAnswerStatus("Correct!")
             dispatch(increase_answeredCorrect())
-            setNextBTN_Disp("block")
+            setNextBTN_Disp("visible")
         }else{
             setAnswerStatus("Sorry!")
             dispatch(increase_answeredFailed())
-            setNextBTN_Disp("block")
+            setNextBTN_Disp("visible")
+            setCorrectAnsBorder("2px solid black")
         }
         const answerClass = document.getElementsByClassName("answers")
         for(let i=0; i<answerClass.length; i++){
@@ -53,15 +57,21 @@ function Answer() {
 
     useEffect(
         () => {
-            const answersConbinedArr = [<button className='answers' onClick={validateAns} >{data[data_Id].correct_answer.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>];
+            const answersConbinedArr = [
+                <button className='answers' style={{border:correctAnsBorder}} onClick={validateAns} >
+                    {decodeURIComponent(data[data_Id].correct_answer)}
+                </button>
+            ];
             
             data[data_Id].incorrect_answers.map(  
                 (answers, pk, answersObj)=>{
-                    answersConbinedArr.push(<button className='answers' onClick={validateAns} >{answers.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C|%24/g,"")}</button>)
+                    answersConbinedArr.push(
+                        <button className='answers' onClick={validateAns} >
+                            {decodeURIComponent(answers)}
+                        </button>
+                    )
                 }
             );
-
-            // setAnswersArr(answersConbinedArr);
 
             const shuffleArray = array => {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -74,7 +84,7 @@ function Answer() {
     
             shuffleArray(answersConbinedArr);
             setAnswersArr(answersConbinedArr);
-        }, [data_Id]
+        }, [data_Id, correctAnsBorder]
     );
 
 
@@ -84,9 +94,6 @@ function Answer() {
         }, [answersArr]
     )
 
-    console.log(answersArr)
-    // console.log(answers)
-
 
     return (
         <>
@@ -94,9 +101,9 @@ function Answer() {
                 {answers}
             </div>
 
-            <h2 id='answerStatus'>{answerStatus}</h2>
+            <h2 id='answerStatus' >{answerStatus}</h2>
 
-            <button id='nextQuestion' onClick={nextQuestion} disabled={nextBTN} style={{display:nextBTN_Disp}}>next</button>
+            <button id='nextQuestion'  onClick={nextQuestion} disabled={nextBTN} style={{visibility:nextBTN_Disp}}>next</button>
         </>
     )
 }

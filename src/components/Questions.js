@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useMemo} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import { useSelector } from 'react-redux'
 
 import data from "../questions.json"  
 import star1 from "../star1.png"  
@@ -46,7 +46,6 @@ function Questions() {
             default:
                 break;
         }
-        console.log(data_Id)
     }, [data_Id])
 
     return (
@@ -54,14 +53,14 @@ function Questions() {
             <div>
                 <h1> Question {currentNum} of {numOfQuestions} </h1>
 
-                <h3>{data[data_Id].category.replace(/%3A/g,":").replace(/%20/g," ")}</h3>
+                <h3>{decodeURIComponent(data[data_Id].category)}</h3>
 
                 <div id='starOverlay'>
                     <small className='stars'> {difficulty} </small>
                 </div>
             </div>
 
-            <p className='question'>{data[data_Id].question.replace(/%3A%20|%20/g," ").replace(/%27|%3F|%22|%2C/g,"")}</p>
+            <p className='question'>{decodeURIComponent(data[data_Id].question)}</p>
         </>
     )
 }
