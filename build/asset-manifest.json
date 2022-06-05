@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactQuestioner/static/css/main.63f7cd94.chunk.css",
-    "main.js": "/ReactQuestioner/static/js/main.8e4cbf9a.chunk.js",
-    "main.js.map": "/ReactQuestioner/static/js/main.8e4cbf9a.chunk.js.map",
-    "runtime~main.js": "/ReactQuestioner/static/js/runtime~main.bf5d57e1.js",
-    "runtime~main.js.map": "/ReactQuestioner/static/js/runtime~main.bf5d57e1.js.map",
-    "static/js/2.ad3586fe.chunk.js": "/ReactQuestioner/static/js/2.ad3586fe.chunk.js",
-    "static/js/2.ad3586fe.chunk.js.map": "/ReactQuestioner/static/js/2.ad3586fe.chunk.js.map",
+    "main.css": "/ReactQuestioner/static/css/main.4e90ebb6.css",
+    "main.js": "/ReactQuestioner/static/js/main.be648392.js",
+    "static/js/787.97f49290.chunk.js": "/ReactQuestioner/static/js/787.97f49290.chunk.js",
     "index.html": "/ReactQuestioner/index.html",
-    "precache-manifest.f535180cdb78601bc32f02c2038cdf9a.js": "/ReactQuestioner/precache-manifest.f535180cdb78601bc32f02c2038cdf9a.js",
-    "service-worker.js": "/ReactQuestioner/service-worker.js",
-    "static/css/main.63f7cd94.chunk.css.map": "/ReactQuestioner/static/css/main.63f7cd94.chunk.css.map"
-  }
+    "main.4e90ebb6.css.map": "/ReactQuestioner/static/css/main.4e90ebb6.css.map",
+    "main.be648392.js.map": "/ReactQuestioner/static/js/main.be648392.js.map",
+    "787.97f49290.chunk.js.map": "/ReactQuestioner/static/js/787.97f49290.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4e90ebb6.css",
+    "static/js/main.be648392.js"
+  ]
 }

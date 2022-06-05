@@ -16,7 +16,6 @@ function Answer() {
     const [answersArr, setAnswersArr] = React.useState([]);
     const [nextBTN, setnextBTN] = React.useState(true);
     const [nextBTN_Disp, setNextBTN_Disp] = React.useState("hidden");
-    const [correctAnsBorder, setCorrectAnsBorder] = React.useState("1px solid black");
 
     const dispatch = useDispatch()
     
@@ -32,8 +31,7 @@ function Answer() {
         }
         setnextBTN(true)
         setAnswerStatus("")
-        setCorrectAnsBorder("1px solid black")
-
+        document.getElementById("correctAns").style.border="1px solid black"
     }
 
     const validateAns =(e)=>{
@@ -45,7 +43,7 @@ function Answer() {
             setAnswerStatus("Sorry!")
             dispatch(increase_answeredFailed())
             setNextBTN_Disp("visible")
-            setCorrectAnsBorder("2px solid black")
+            document.getElementById("correctAns").style.border="2px solid black"
         }
         const answerClass = document.getElementsByClassName("answers")
         for(let i=0; i<answerClass.length; i++){
@@ -55,10 +53,10 @@ function Answer() {
     }
 
 
-    useEffect(
+    useMemo(
         () => {
             const answersConbinedArr = [
-                <button className='answers' style={{border:correctAnsBorder}} onClick={validateAns} >
+                <button className='answers' id='correctAns' onClick={validateAns} >
                     {decodeURIComponent(data[data_Id].correct_answer)}
                 </button>
             ];
@@ -84,11 +82,11 @@ function Answer() {
     
             shuffleArray(answersConbinedArr);
             setAnswersArr(answersConbinedArr);
-        }, [data_Id, correctAnsBorder]
+        }, [data_Id]
     );
 
 
-    useMemo(
+    useEffect(
         ()=>{
             setAnswers(answersArr)  
         }, [answersArr]

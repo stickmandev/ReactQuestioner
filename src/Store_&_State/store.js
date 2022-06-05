@@ -4,6 +4,7 @@ import currentNumReducer from '../components/slices/currentNum_Slice';
 import data_IdReducer from '../components/slices/data_Id_Slice';
 import answeredCorrectReducer from '../components/slices/answeredCorrect_Slice';
 import answeredFailedReducer from '../components/slices/answeredFailed_Slice';
+import correctAnsBorderReducer from '../components/slices/correctAnsBorder_Slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     data_Id:data_IdReducer,
     answeredCorrect:answeredCorrectReducer,
     answeredFailed:answeredFailedReducer,
+    correctAnsBorder:correctAnsBorderReducer,
   },
 });

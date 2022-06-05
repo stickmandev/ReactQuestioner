@@ -6,7 +6,7 @@ function Score() {
     const answeredCorrect = useSelector((state) => state.answeredCorrect.value)
     const answeredFailed = useSelector((state) => state.answeredFailed.value)
     const [score, setScore] = React.useState(0);
-    const [maxScore, setMaxScore] = React.useState(0);
+    const [maxScore, setMaxScore] = React.useState(100);
     const [minScore, setMinScore] = React.useState(0);
 
     useEffect(
@@ -22,7 +22,15 @@ function Score() {
             setMinScore(
                 100-maxScore
             )
-        }
+        },[answeredCorrect, answeredFailed]
+    )
+
+    useEffect(
+        () => {
+            setMinScore(
+                100-maxScore
+            )
+        },[maxScore]
     )
 
     return (
